@@ -289,6 +289,27 @@ form button{
 form button:hover{
     opacity: 0.9;
 }
+  .faq-item{
+    border-top: 1px solid #b08a4a;
+    padding: 24px 0;
+    cursor: pointer;
+}
+
+.faq-item summary{
+    font-size: 20px;
+    font-weight: bold;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker{
+    display: none;
+}
+
+.faq-item p{
+    color: var(--muted);
+    margin-top: 15px;
+    line-height: 1.6;
+}
 </style>
 </head>
 
@@ -391,25 +412,25 @@ form button:hover{
   <section id="faq">
   <h2 class="section-title">Frequently Asked Questions</h2>
 
-  <div class="card">
-    <h3>How often do you inspect properties?</h3>
+  <details class="faq-item">
+    <summary>How often do you inspect properties?</summary>
     <p>Usually once per month or as agreed with the property owner.</p>
-  </div>
+  </details>
 
-  <div class="card">
-    <h3>Do you provide photo reports?</h3>
+  <details class="faq-item">
+    <summary>Do you provide photo reports?</summary>
     <p>Yes. Property inspections can include photo documentation and condition updates.</p>
-  </div>
+  </details>
 
-  <div class="card">
-    <h3>Can you communicate with tenants?</h3>
+  <details class="faq-item">
+    <summary>Can you communicate with tenants?</summary>
     <p>Yes. We can support tenant communication, issue handling and coordination.</p>
-  </div>
+  </details>
 
-  <div class="card">
-    <h3>Do you work with owners living abroad?</h3>
+  <details class="faq-item">
+    <summary>Do you work with owners living abroad?</summary>
     <p>Yes. This is one of the main client groups we support.</p>
-  </div>
+  </details>
 </section>
 <section id="contact">
   <h2 class="section-title">Contact</h2>
