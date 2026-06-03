@@ -330,14 +330,21 @@ form button:hover{
   .language-switch {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-left: 30px;
+    gap: 10px;
+    margin-left: 35px;
+    padding-left: 25px;
+    border-left: 1px solid #ddd;
 }
 
 .language-switch a {
     text-decoration: none;
     color: #333;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.language-switch span {
+    color: #aaa;
 }
 
 .active-lang {
@@ -357,10 +364,10 @@ form button:hover{
   <a href="#contact">Contact</a>
 
   <div class="language-switch">
-    <a href="index.html" class="active-lang">ENG</a>
-    <span>|</span>
-    <a href="lv.html">LV</a>
-  </div>
+  <a href="index.html" class="active-lang">🇬🇧 ENG</a>
+  <span>|</span>
+  <a href="lv.html">🇱🇻 LV</a>
+</div>
 </nav>
 </header>
 
