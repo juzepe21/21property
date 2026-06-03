@@ -260,6 +260,35 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+  form{
+    max-width: 600px;
+    margin-top: 30px;
+}
+
+form input,
+form textarea{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+form button{
+    background: #b08a4a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover{
+    opacity: 0.9;
+}
 </style>
 </head>
 
@@ -364,7 +393,7 @@ footer {
   <p class="section-subtitle">
     Need reliable property management support in Latvia?
   </p>
-
+<form action="https://formsubmit.co/ricards.juzups21@gmail.com" method="POST">
   <div class="contact-box">
     <p><strong>21 Property Solutions</strong></p>
     <p>Riga, Latvia</p>
@@ -384,6 +413,20 @@ Ricards Juzups
 </p>
     <p>Website: 21property.lv</p>
   </div>
+  <br><br>
+
+<input type="text" name="name" placeholder="Your Name" required><br><br>
+
+<input type="email" name="email" placeholder="Your Email" required><br><br>
+
+<textarea name="message" placeholder="Your Message" rows="5" required></textarea><br><br>
+  
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="New message from 21 Property Solutions">
+  
+<button type="submit">Send Message</button>
+
+</form>
 </section>
 
 </main>
