@@ -327,6 +327,22 @@ form button:hover{
     margin-top: 15px;
     line-height: 1.6;
 }
+  .language-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 30px;
+}
+
+.language-switch a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+.active-lang {
+    color: var(--gold);
+}
 </style>
 </head>
 
@@ -339,6 +355,12 @@ form button:hover{
   <a href="#why">Why Us</a>
   <a href="#faq">FAQ</a>
   <a href="#contact">Contact</a>
+
+  <div class="language-switch">
+    <a href="index.html" class="active-lang">ENG</a>
+    <span>|</span>
+    <a href="lv.html">LV</a>
+  </div>
 </nav>
 </header>
 
