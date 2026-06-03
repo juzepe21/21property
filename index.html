@@ -396,6 +396,9 @@ form button:hover{
   <p style="color:#b08a4a; font-weight:bold;">
 We typically respond within 24 hours.
 </p>
+  <div id="success-message" style="display:none; color:green; font-weight:bold; margin-bottom:20px;">
+Thank you! Your message has been sent successfully. We will respond within 24 hours.
+</div>
 <form action="https://formsubmit.co/ricards.juzups21@gmail.com" method="POST">
   <input type="hidden" name="_next" value="https://21property.vercel.app/?success=true">
   <div class="contact-box">
@@ -443,6 +446,10 @@ Ricards Juzups
 <footer>
 © 2026 21 Property Solutions. Property Management & Supervision in Latvia.
 </footer>
-
+<script>
+if(window.location.search.includes("success=true")){
+    document.getElementById("success-message").style.display = "block";
+}
+</script>
 </body>
 </html>
