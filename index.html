@@ -518,6 +518,10 @@ Ricards Juzups
 if(window.location.search.includes("success=true")){
     document.getElementById("success-message").style.display = "block";
     document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+
+    setTimeout(function(){
+        window.history.replaceState({}, document.title, "/");
+    }, 1000);
 }
 </script>
 </body>
