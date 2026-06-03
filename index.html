@@ -1,133 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>21 Property Solutions</title>
 
 <style>
+:root {
+  --black: #0f0f0f;
+  --white: #ffffff;
+  --light: #f7f5f0;
+  --gold: #b08a4a;
+  --text: #222222;
+  --muted: #666666;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    color: #222;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--text);
+}
+
+header {
+  padding: 22px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--white);
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  height: 58px;
+}
+
+nav a {
+  margin-left: 26px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
 .hero {
-    background: white;
-    padding: 80px 20px;
-    text-align: center;
+  min-height: 82vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  padding: 80px 7%;
+  background: linear-gradient(90deg, #ffffff 0%, #f8f6f1 100%);
 }
 
 .hero h1 {
-    font-size: 52px;
-    margin-bottom: 15px;
+  font-size: 58px;
+  line-height: 1.05;
+  margin: 0 0 22px;
+  color: var(--black);
 }
 
 .hero p {
-    font-size: 22px;
-    max-width: 700px;
-    margin: auto;
+  font-size: 21px;
+  line-height: 1.6;
+  max-width: 620px;
+  color: var(--muted);
 }
 
-.button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 15px 30px;
-    background: black;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
+.gold {
+  color: var(--gold);
 }
 
-.section {
-    max-width: 1100px;
-    margin: auto;
-    padding: 60px 20px;
+.btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 16px 30px;
+  background: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 3px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
 }
 
-.section h2 {
-    margin-bottom: 30px;
+.hero-card {
+  background: var(--black);
+  color: var(--white);
+  padding: 46px;
+  border-radius: 2px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+}
+
+.hero-card h3 {
+  color: var(--gold);
+  margin-top: 0;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.hero-card p {
+  color: #ddd;
+  font-size: 17px;
+}
+
+section {
+  padding: 80px 7%;
+}
+
+.section-title {
+  font-size: 38px;
+  margin-bottom: 14px;
+  color: var(--black);
+}
+
+.section-subtitle {
+  color: var(--muted);
+  max-width: 680px;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 42px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
 }
 
 .card {
-    background: white;
-    padding: 25px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+  background: var(--light);
+  padding: 30px;
+  border-radius: 2px;
+  border-top: 3px solid var(--gold);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.dark .section-title {
+  color: var(--white);
+}
+
+.dark .section-subtitle {
+  color: #cfcfcf;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.why-item {
+  border: 1px solid #333;
+  padding: 28px;
+  color: #eaeaea;
+}
+
+.why-item span {
+  color: var(--gold);
+  font-size: 24px;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.contact-box {
+  background: var(--light);
+  padding: 42px;
+  border-left: 4px solid var(--gold);
+}
+
+.contact-box p {
+  margin: 10px 0;
+  font-size: 18px;
 }
 
 footer {
+  background: var(--black);
+  color: #aaa;
+  text-align: center;
+  padding: 32px;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  header {
+    display: block;
     text-align: center;
-    padding: 40px;
-    background: #111;
-    color: white;
+  }
+
+  nav {
+    margin-top: 18px;
+  }
+
+  nav a {
+    margin: 0 10px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 60px 7%;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .hero-card {
+    margin-top: 40px;
+  }
+
+  .services,
+  .why-grid,
+  .about {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
-
 </head>
+
 <body>
 
+<header>
+  <img src="logo.jpg" alt="21 Property Solutions logo" class="logo" />
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+
 <section class="hero">
-<h1>21 Property Solutions</h1>
+  <div>
+    <h1>Professional Property Management & Supervision in <span class="gold">Latvia</span></h1>
+    <p>
+      We manage rental properties, tenants, inspections and day-to-day property operations for owners in Latvia and abroad.
+    </p>
+    <a href="#contact" class="btn">Get a Free Consultation</a>
+  </div>
 
-<p>
-Property Management for Owners in Latvia and Abroad
-</p>
-
-<a class="button" href="#">
-Book a Consultation
-</a>
+  <div class="hero-card">
+    <h3>MANAGEMENT IN LATVIA</h3>
+    <p>
+      Local support for property owners who want peace of mind, reliable communication and professional property care.
+    </p>
+    <p>
+      Management fees starting from <strong>10% of monthly rental income.</strong>
+    </p>
+  </div>
 </section>
 
-<section class="section">
-<h2>Our Services</h2>
+<section id="services">
+  <h2 class="section-title">Our Services</h2>
+  <p class="section-subtitle">
+    21 Property Solutions takes over the daily tasks connected with rental properties, so owners do not need to manage everything themselves.
+  </p>
 
-<div class="card">
-<h3>Property Management</h3>
-<p>Full management of rental properties in Latvia.</p>
-</div>
+  <div class="services">
+    <div class="card">
+      <h3>Property Management</h3>
+      <p>Full management of rental properties, owner representation and day-to-day coordination.</p>
+    </div>
 
-<div class="card">
-<h3>Property Supervision</h3>
-<p>Regular inspections and detailed condition reports.</p>
-</div>
+    <div class="card">
+      <h3>Tenant Management</h3>
+      <p>Tenant search, communication, conflict handling and rental process support.</p>
+    </div>
 
-<div class="card">
-<h3>Tenant Communication</h3>
-<p>Professional communication and coordination with tenants.</p>
-</div>
+    <div class="card">
+      <h3>Maintenance</h3>
+      <p>Coordination of repairs, emergency situations and property upkeep.</p>
+    </div>
 
-<div class="card">
-<h3>Property Inspections</h3>
-<p>Photo reports and property condition monitoring.</p>
-</div>
-
+    <div class="card">
+      <h3>Inspections</h3>
+      <p>Regular property checks, photo reports and updates about property condition.</p>
+    </div>
+  </div>
 </section>
 
-<section class="section">
-<h2>Why Choose Us</h2>
+<section id="why" class="dark">
+  <h2 class="section-title">Why Choose Us</h2>
+  <p class="section-subtitle">
+    We are built for property owners who need a reliable person on the ground in Latvia.
+  </p>
 
-<div class="card">
-✔ Local presence in Latvia
-</div>
-
-<div class="card">
-✔ Reliable communication
-</div>
-
-<div class="card">
-✔ Detailed inspection reports
-</div>
-
-<div class="card">
-✔ Support for owners living abroad
-</div>
-
+  <div class="why-grid">
+    <div class="why-item"><span>01</span><br><br>Local presence in Latvia</div>
+    <div class="why-item"><span>02</span><br><br>Reliable owner communication</div>
+    <div class="why-item"><span>03</span><br><br>Detailed property reports</div>
+    <div class="why-item"><span>04</span><br><br>Support for owners abroad</div>
+  </div>
 </section>
+
+<section id="about">
+  <div class="about">
+    <div>
+      <h2 class="section-title">About 21 Property Solutions</h2>
+      <p>
+        21 Property Solutions provides practical property management and supervision services in Latvia.
+      </p>
+      <p>
+        We work with property owners, investors and Latvians living abroad who need reliable local support for rental properties, tenants, maintenance and inspections.
+      </p>
+    </div>
+
+    <div class="contact-box">
+      <h3>Ideal for</h3>
+      <p>• Latvians living abroad</p>
+      <p>• Owners with property portfolios</p>
+      <p>• Foreign investors in Latvia</p>
+      <p>• Busy rental property owners</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p class="section-subtitle">
+    Need someone to manage or supervise your property in Latvia?
+  </p>
+
+  <div class="contact-box">
+    <p><strong>21 Property Solutions</strong></p>
+    <p>Riga, Latvia</p>
+    <p>Email: juzups.ricards@gmail.com</p>
+    <p>Website: 21property.lv</p>
+  </div>
+</section>
+
+</main>
 
 <footer>
-21 Property Solutions © 2026
+  © 2026 21 Property Solutions. Property management in Latvia.
 </footer>
 
 </body>
