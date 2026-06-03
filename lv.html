@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>21 Property Solutions | Property Management & Supervision in Latvia</title>
+  <meta name="description" content="Property management, property supervision, tenant support and inspections in Latvia. Local support for property owners and investors.">
+  <meta name="keywords" content="property management Latvia, property supervision Latvia, tenant management, property inspections Latvia, rental property support">
+
+<meta name="author" content="21 Property Solutions">
+
+<meta property="og:title" content="21 Property Solutions">
+
+<meta property="og:description" content="Property Management & Supervision in Latvia">
+
+<meta property="og:type" content="website">
+
+<style>
+:root {
+  --black: #0f0f0f;
+  --white: #ffffff;
+  --light: #f7f5f0;
+  --gold: #b08a4a;
+  --text: #222222;
+  --muted: #666666;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--text);
+}
+
+header {
+  padding: 5px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--white);
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  height: 120px;
+}
+
+nav a {
+  margin-left: 26px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.hero {
+  min-height: 65vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  padding: 80px 7%;
+  background: linear-gradient(90deg, #ffffff 0%, #f8f6f1 100%);
+}
+
+.hero h1 {
+  font-size: 58px;
+  line-height: 1.05;
+  margin: 0 0 22px;
+  color: var(--black);
+}
+
+.hero p {
+  font-size: 21px;
+  line-height: 1.6;
+  max-width: 620px;
+  color: var(--muted);
+}
+
+.gold {
+  color: var(--gold);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 16px 30px;
+  background: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 3px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+ .btn-whatsapp {
+  background: #25D366;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+}
+}
+
+.hero-card {
+  background: var(--black);
+  color: var(--white);
+  padding: 46px;
+  border-radius: 2px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+}
+
+.hero-image {
+  padding: 0;
+  overflow: hidden;
+  min-height: 360px;
+  background: transparent;
+  box-shadow: none;
+}
+
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+}
+
+.hero-card h3 {
+  color: var(--gold);
+  margin-top: 0;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.hero-card p {
+  color: #ddd;
+  font-size: 17px;
+}
+
+section {
+  padding: 80px 7%;
+}
+
+.section-title {
+  font-size: 38px;
+  margin-bottom: 14px;
+  color: var(--black);
+}
+
+.section-subtitle {
+  color: var(--muted);
+  max-width: 680px;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 42px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: var(--light);
+  padding: 30px;
+  border-radius: 2px;
+  border-top: 3px solid var(--gold);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+.dark .section-title {
+  color: var(--white);
+}
+
+.dark .section-subtitle {
+  color: #cfcfcf;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.why-item {
+  border: 1px solid #333;
+  padding: 28px;
+  color: #eaeaea;
+}
+
+.why-item span {
+  color: var(--gold);
+  font-size: 24px;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+..contact-box {
+  background: var(--light);
+  padding: 42px;
+  border-left: 4px solid var(--gold);
+  max-width: 600px;
+}
+
+.contact-box p {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+footer {
+  background: var(--black);
+  color: #aaa;
+  text-align: center;
+  padding: 32px;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  header {
+    display: block;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: 18px;
+  }
+
+  nav a {
+    margin: 0 10px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 60px 7%;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .hero-card {
+    margin-top: 40px;
+  }
+
+  .services,
+  .why-grid,
+  .about {
+    grid-template-columns: 1fr;
+  }
+}
+  form{
+    max-width: 600px;
+    margin-top: 30px;
+}
+
+form input,
+form textarea{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+form button{
+    background: #b08a4a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover{
+    opacity: 0.9;
+}
+  .faq-item{
+    border-top: 1px solid #b08a4a;
+    padding: 24px 0;
+    cursor: pointer;
+}
+
+.faq-item summary{
+    font-size: 20px;
+    font-weight: bold;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker{
+    display: none;
+}
+
+.faq-item p{
+    color: var(--muted);
+    margin-top: 15px;
+    line-height: 1.6;
+}
+  .language-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 35px;
+    padding-left: 25px;
+    border-left: 1px solid #ddd;
+}
+
+.language-switch a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.language-switch span {
+    color: #aaa;
+}
+
+.active-lang {
+    color: #b08a4a !important;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.jpg" alt="21 Property Solutions logo" class="logo" />
+<nav>
+  <a href="#services">Services</a>
+  <a href="#why">Why Us</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
+
+  <div class="language-switch">
+  <a href="index.html" class="active-lang">ENG</a>
+<span>|</span>
+<a href="lv.html">LAT</a>
+</div>
+</nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div>
+    <h1>Professional Property Management & Supervision in <span class="gold">Latvia</span></h1>
+    <p>
+      We manage rental properties, tenants, inspections and day-to-day property operations for owners in Latvia and abroad.
+    </p>
+    <a href="#contact" class="btn">Get Free Consultation</a>
+
+    <br><br>
+
+<a href="https://wa.me/37125638279" class="btn" target="_blank">
+    WhatsApp Us
+</a>
+  </div>
+
+<div class="hero-card hero-image">
+  <img src="hero.jpg" alt="Riga skyline">
+</div>
+</section>
+
+<section id="services">
+  <h2 class="section-title">Our Services</h2>
+  <p class="section-subtitle">
+    21 Property Solutions takes over the daily tasks connected with rental properties, so owners do not need to manage everything themselves.
+  </p>
+
+  <div class="services">
+    <div class="card">
+      <h3>Property Management</h3>
+<p>Complete rental property management, tenant communication and owner representation.</p>
+    </div>
+
+    <div class="card">
+      <h3>Tenant Placement</h3>
+<p>Tenant search, screening, viewings and preparation of rental agreements.</p>
+    </div>
+
+    <div class="card">
+      <h3>Property Supervision</h3>
+<p>Regular inspections, condition reports and monitoring of vacant properties.</p>
+    </div>
+
+    <div class="card">
+      <h3>Maintenance Coordination</h3>
+<p>Coordination of repairs, cleaning services and trusted local contractors.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="dark">
+  <h2 class="section-title">Why Choose Us</h2>
+ <p class="section-subtitle">
+  Reliable local support for property owners, investors and Latvians living abroad.
+</p>
+
+  <div class="why-grid">
+    <div class="why-item"><span>01</span><br><br>Local representative in Latvia</div>
+<div class="why-item"><span>02</span><br><br>Clear communication with owners</div>
+<div class="why-item"><span>03</span><br><br>Regular inspections and photo reports</div>
+<div class="why-item"><span>04</span><br><br>Support for owners living abroad</div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about">
+    <div>
+      <h2 class="section-title">About 21 Property Solutions</h2>
+     <p>
+  21 Property Solutions provides property management and supervision services for owners in Latvia and abroad.
+</p>
+<p>
+  We help property owners handle tenants, inspections, maintenance coordination and everyday property-related tasks through reliable local support in Latvia.
+</p>
+    </div>
+
+    <div class="contact-box">
+      <h3>Ideal for</h3>
+      <p>• Latvians living abroad</p>
+      <p>• Owners with property portfolios</p>
+      <p>• Foreign investors in Latvia</p>
+      <p>• Busy rental property owners</p>
+    </div>
+  </div>
+</section>
+<style>
+#contact{
+    margin-top: 80px;
+}
+</style>
+  <section id="faq">
+  <h2 class="section-title">Frequently Asked Questions</h2>
+
+  <details class="faq-item">
+    <summary>How often do you inspect properties?</summary>
+    <p>Usually once per month or as agreed with the property owner.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Do you provide photo reports?</summary>
+    <p>Yes. Property inspections can include photo documentation and condition updates.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Can you communicate with tenants?</summary>
+    <p>Yes. We can support tenant communication, issue handling and coordination.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Do you work with owners living abroad?</summary>
+    <p>Yes. This is one of the main client groups we support.</p>
+  </details>
+</section>
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p class="section-subtitle">
+    Need reliable property management support in Latvia?
+  </p>
+  <p style="color:#b08a4a; font-weight:bold;">
+We typically respond within 24 hours.
+</p>
+  <div id="success-message" style="display:none; color:green; font-weight:bold; margin-bottom:20px;">
+Thank you! Your message has been sent successfully. We will respond within 24 hours.
+</div>
+<form action="https://formsubmit.co/ricards.juzups21@gmail.com" method="POST">
+  <input type="hidden" name="_next" value="https://21property.vercel.app/?success=true#contact">
+  <div class="contact-box">
+    <p><strong>21 Property Solutions</strong></p>
+    <p>Riga, Latvia</p>
+<p>Email:
+<a href="mailto:ricards.juzups21@gmail.com">
+ricards.juzups21@gmail.com
+</a>
+</p>
+
+<p>
+Phone:
+<a href="https://wa.me/37125638279" target="_blank">
++371 25638279 (WhatsApp)
+</a>
+</p>
+
+<p>
+LinkedIn:
+<a href=https://www.linkedin.com/in/ri%C4%8Dards-juzups-13555a3b2/ target="_blank">
+Ricards Juzups
+</a>
+</p>
+    <p>Website: 21property.lv</p>
+  </div>
+  <br><br>
+
+<input type="text" name="name" placeholder="Your Name" required><br><br>
+
+<input type="email" name="email" placeholder="Your Email" required><br><br>
+
+<textarea name="message" placeholder="Your Message" rows="5" required></textarea><br><br>
+  
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="New message from 21 Property Solutions">
+  
+<button type="submit">Send Message</button>
+
+</form>
+</section>
+
+</main>
+
+<footer>
+© 2026 21 Property Solutions. Property Management & Supervision in Latvia.
+</footer>
+<script>
+if(window.location.search.includes("success=true")){
+    document.getElementById("success-message").style.display = "block";
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+
+    setTimeout(function(){
+        window.history.replaceState({}, document.title, "/");
+    }, 1000);
+}
+</script>
+</body>
+</html>
