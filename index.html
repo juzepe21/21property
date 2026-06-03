@@ -400,7 +400,7 @@ We typically respond within 24 hours.
 Thank you! Your message has been sent successfully. We will respond within 24 hours.
 </div>
 <form action="https://formsubmit.co/ricards.juzups21@gmail.com" method="POST">
-  <input type="hidden" name="_next" value="https://21property.vercel.app/?success=true">
+  <input type="hidden" name="_next" value="https://21property.vercel.app/?success=true#contact">
   <div class="contact-box">
     <p><strong>21 Property Solutions</strong></p>
     <p>Riga, Latvia</p>
@@ -449,6 +449,7 @@ Ricards Juzups
 <script>
 if(window.location.search.includes("success=true")){
     document.getElementById("success-message").style.display = "block";
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
 }
 </script>
 </body>
