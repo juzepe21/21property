@@ -94,6 +94,20 @@ nav a {
   box-shadow: 0 25px 60px rgba(0,0,0,0.18);
 }
 
+.hero-image {
+  padding: 0;
+  overflow: hidden;
+  min-height: 360px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+}
+
 .hero-card h3 {
   color: var(--gold);
   margin-top: 0;
@@ -268,15 +282,9 @@ footer {
     <a href="#contact" class="btn">Contact Us</a>
   </div>
 
-  <div class="hero-card">
-    <h3>MANAGEMENT IN LATVIA</h3>
-    <p>
-      Local support for property owners who want peace of mind, reliable communication and professional property care.
-    </p>
-    <p>
-      Management fees starting from <strong>10% of monthly rental income.</strong>
-    </p>
-  </div>
+<div class="hero-card hero-image">
+  <img src="hero.jpg" alt="Riga skyline">
+</div>
 </section>
 
 <section id="services">
