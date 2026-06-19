@@ -354,6 +354,41 @@ form button:hover{
 .active-lang {
     color: #b08a4a !important;
 }
+  .founder-contact {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: #f7f3ea;
+    padding: 22px;
+    border-radius: 16px;
+}
+
+.founder-contact img {
+    width: 115px;
+    height: 115px;
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.founder-contact h3 {
+    margin: 0 0 8px;
+    font-size: 22px;
+}
+
+.founder-contact p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+    .founder-contact {
+        flex-direction: column;
+        text-align: center;
+    }
+}
 </style>
 </head>
 
@@ -585,6 +620,16 @@ Ricards Juzups
 </p>
     <p>Website: 21property.lv</p>
   </div>
+  <div class="founder-contact">
+  <img src="founder.jpeg" alt="Ricards Juzups">
+
+  <div>
+    <h3>Ricards Juzups</h3>
+    <p>
+      Founder of 21 Property Solutions. I help property owners with supervision, tenant communication, photo reports and practical property-related coordination in Latvia.
+    </p>
+  </div>
+</div>
   <br><br>
 
 <input type="text" name="name" placeholder="Your Name" required><br><br>
