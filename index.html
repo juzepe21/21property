@@ -182,6 +182,28 @@ section {
 #properties .property-card {
     flex: 0 0 calc((100% - 44px) / 3);
     min-width: calc((100% - 44px) / 3);
+  box-sizing: border-box;
+}
+  .property-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.property-nav button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #b08a4a;
+    background: white;
+    cursor: pointer;
+    font-size: 22px;
+    border-radius: 50%;
+}
+
+.property-nav button:hover {
+    background: #b08a4a;
+    color: white;
 }
 
 .card {
