@@ -290,18 +290,18 @@ footer {
   header {
     display: block;
     text-align: center;
-    #properties .services {
+#properties .services {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 12px;
-}
-    #properties .services {
     width: 100%;
 }
 
 #properties .property-card {
-    min-width: calc(50% - 6px) !important;
-    width: calc(50% - 6px) !important;
-    flex: 0 0 calc(50% - 6px) !important;
+    min-width: 0 !important;
+    width: auto !important;
     padding: 12px;
+
 }
 
 #properties .property-main-img {
