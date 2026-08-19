@@ -167,8 +167,21 @@ section {
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
-  #properties .services {
-    grid-template-columns: repeat(3, 1fr);
+.property-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+#properties .services {
+    display: flex;
+    gap: 22px;
+    transition: transform 0.45s ease;
+    will-change: transform;
+}
+
+#properties .property-card {
+    flex: 0 0 calc((100% - 44px) / 3);
+    min-width: calc((100% - 44px) / 3);
 }
 
 .card {
@@ -385,6 +398,14 @@ form button:hover{
     color: var(--muted);
     line-height: 1.5;
 }
+  #properties .services {
+    gap: 12px;
+}
+
+#properties .property-card {
+    flex: 0 0 calc((100% - 12px) / 2);
+    min-width: calc((100% - 12px) / 2);
+}
 
 @media (max-width: 700px) {
     .founder-contact {
@@ -504,7 +525,12 @@ form button:hover{
   <p class="section-subtitle">
     Examples of properties where we can provide supervision, photo reports, tenant communication and day-to-day property management coordination.
   </p>
+<div class="property-nav">
+  <button type="button" id="property-prev" aria-label="Previous property">←</button>
+  <button type="button" id="property-next" aria-label="Next property">→</button>
+</div>
 
+<div class="property-viewport">
   <div class="services">
     <div class="card property-card">
       <img src="property-1-main.jpg.jpeg" alt="Rental apartment in Riga" class="property-main-img">
@@ -543,6 +569,19 @@ form button:hover{
   <h3>Rental Property on A. Čaka Street 146</h3>
   <p>Property supervision, inspections, photo reports and day-to-day property coordination.</p>
 </div>
+    <div class="card property-card">
+  <img src="property-4-main.jpeg.jpeg" alt="Rental property on Berzaunes Street 3A, Teika" class="property-main-img">
+
+  <div class="property-gallery">
+    <img src="property-4-1.jpeg.jpeg" alt="Property photo">
+    <img src="property-4-2.jpeg.jpeg" alt="Property photo">
+    <img src="property-4-3.jpeg.jpeg" alt="Property photo">
+  </div>
+
+  <h3>Rental Property on Berzaunes Street 3A, Teika</h3>
+  <p>Tenant sourcing and screening, rental process coordination, and ongoing support with day-to-day property matters.</p>
+</div>
+    </div>
   </div>
 </section>
 <section id="why" class="dark">
@@ -710,6 +749,106 @@ if(window.location.search.includes("success=true")){
         window.history.replaceState({}, document.title, "/");
     }, 1000);
 }
+  const propertyContainer = document.querySelector('#properties .services');
+const propertyPrev = document.getElementById('property-prev');
+const propertyNext = document.getElementById('property-next');
+
+let visibleCards;
+let currentIndex;
+let isMoving = false;
+
+function setupCarousel() {
+    propertyContainer.querySelectorAll('.property-clone').forEach(clone => clone.remove());
+
+    const originals = Array.from(
+        propertyContainer.querySelectorAll('.property-card')
+    );
+
+    visibleCards = window.innerWidth <= 900 ? 2 : 3;
+    const gap = window.innerWidth <= 900 ? 12 : 22;
+
+    const before = document.createDocumentFragment();
+
+    originals.slice(-visibleCards).forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add('property-clone');
+        before.appendChild(clone);
+    });
+
+    propertyContainer.prepend(before);
+
+    originals.slice(0, visibleCards).forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add('property-clone');
+        propertyContainer.appendChild(clone);
+    });
+
+    currentIndex = visibleCards;
+
+    propertyContainer.style.transition = 'none';
+    propertyContainer.style.transform =
+        `translateX(-${currentIndex * getStep()}px)`;
+
+    isMoving = false;
+}
+
+function getStep() {
+    const firstCard = propertyContainer.querySelector('.property-card');
+    const gap = window.innerWidth <= 900 ? 12 : 22;
+
+    return firstCard.getBoundingClientRect().width + gap;
+}
+
+function moveCarousel() {
+    propertyContainer.style.transition = 'transform 0.45s ease';
+    propertyContainer.style.transform =
+        `translateX(-${currentIndex * getStep()}px)`;
+}
+
+propertyNext.addEventListener('click', function () {
+    if (isMoving) return;
+
+    isMoving = true;
+    currentIndex++;
+    moveCarousel();
+});
+
+propertyPrev.addEventListener('click', function () {
+    if (isMoving) return;
+
+    isMoving = true;
+    currentIndex--;
+    moveCarousel();
+});
+
+propertyContainer.addEventListener('transitionend', function () {
+    const originalCount =
+        propertyContainer.querySelectorAll('.property-card:not(.property-clone)').length;
+
+    if (currentIndex >= originalCount + visibleCards) {
+        currentIndex = visibleCards;
+
+        propertyContainer.style.transition = 'none';
+        propertyContainer.style.transform =
+            `translateX(-${currentIndex * getStep()}px)`;
+    }
+
+    if (currentIndex < visibleCards) {
+        currentIndex = originalCount + currentIndex;
+
+        propertyContainer.style.transition = 'none';
+        propertyContainer.style.transform =
+            `translateX(-${currentIndex * getStep()}px)`;
+    }
+
+    isMoving = false;
+});
+
+window.addEventListener('resize', function () {
+    setupCarousel();
+});
+
+setupCarousel();
 </script>
 </body>
 </html>
