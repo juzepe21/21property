@@ -291,16 +291,19 @@ footer {
     display: block;
     text-align: center;
 #properties .services {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px;
-    width: 100%;
+    display: flex !important;
+    gap: 12px !important;
+    width: 100% !important;
+    overflow: hidden !important;
 }
 
 #properties .property-card {
-    min-width: 0 !important;
-    width: auto !important;
-    padding: 12px;
+    flex: 0 0 calc(50% - 6px) !important;
+    min-width: calc(50% - 6px) !important;
+    width: calc(50% - 6px) !important;
+    padding: 12px !important;
+    box-sizing: border-box;
+}
 
 }
 
