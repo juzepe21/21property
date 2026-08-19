@@ -778,119 +778,64 @@ if(window.location.search.includes("success=true")){
     }, 1000);
 }
   const propertyContainer = document.querySelector('#properties .services');
+const propertyCards = Array.from(
+    propertyContainer.querySelectorAll('.property-card')
+);
+
 const propertyPrev = document.getElementById('property-prev');
 const propertyNext = document.getElementById('property-next');
 
-let visibleCards = window.innerWidth <= 900 ? 2 : 3;
-let gap = window.innerWidth <= 900 ? 12 : 22;
-let currentIndex = visibleCards;
-let isMoving = false;
+let propertyIndex = 0;
 
-function buildCarousel() {
-    const originals = Array.from(
-        propertyContainer.querySelectorAll('.property-card:not(.clone)')
-    );
+function renderProperties() {
 
-    propertyContainer.querySelectorAll('.clone').forEach(clone => clone.remove());
+    const mobile = window.innerWidth <= 900;
+    const visibleCards = mobile ? 2 : 3;
+    const gap = mobile ? 12 : 22;
 
-    visibleCards = window.innerWidth <= 900 ? 2 : 3;
-    gap = window.innerWidth <= 900 ? 12 : 22;
+    propertyContainer.style.setProperty('display', 'flex', 'important');
+    propertyContainer.style.setProperty('gap', gap + 'px', 'important');
+    propertyContainer.style.setProperty('overflow', 'hidden', 'important');
+    propertyContainer.style.setProperty('width', '100%', 'important');
 
-    const startClones = originals
-        .slice(-visibleCards)
-        .map(card => {
-            const clone = card.cloneNode(true);
-            clone.classList.add('clone');
-            return clone;
-        });
-
-    const endClones = originals
-        .slice(0, visibleCards)
-        .map(card => {
-            const clone = card.cloneNode(true);
-            clone.classList.add('clone');
-            return clone;
-        });
-
-    startClones.reverse().forEach(clone => {
-        propertyContainer.insertBefore(clone, propertyContainer.firstChild);
+    propertyCards.forEach(card => {
+        card.style.setProperty('display', 'none', 'important');
     });
 
-    endClones.forEach(clone => {
-        propertyContainer.appendChild(clone);
-    });
+    const cardWidth =
+        `calc((100% - ${(visibleCards - 1) * gap}px) / ${visibleCards})`;
 
-    const allCards = propertyContainer.querySelectorAll('.property-card');
-    const cardWidth = `calc((100% - ${(visibleCards - 1) * gap}px) / ${visibleCards})`;
+    for (let i = 0; i < visibleCards; i++) {
 
-    allCards.forEach(card => {
-        card.style.flex = `0 0 ${cardWidth}`;
-        card.style.width = cardWidth;
-        card.style.minWidth = cardWidth;
-        card.style.maxWidth = cardWidth;
-    });
+        const card =
+            propertyCards[(propertyIndex + i) % propertyCards.length];
 
-    propertyContainer.style.display = 'flex';
-    propertyContainer.style.gap = gap + 'px';
-    propertyContainer.style.transition = 'none';
-
-    currentIndex = visibleCards;
-
-    requestAnimationFrame(() => {
-        moveToIndex(false);
-    });
-}
-
-function getStep() {
-    const firstCard = propertyContainer.querySelector('.property-card');
-    return firstCard.getBoundingClientRect().width + gap;
-}
-
-function moveToIndex(animate = true) {
-    propertyContainer.style.transition = animate
-        ? 'transform 0.45s ease'
-        : 'none';
-
-    propertyContainer.style.transform =
-        `translateX(-${currentIndex * getStep()}px)`;
-}
-
-propertyNext.addEventListener('click', () => {
-    if (isMoving) return;
-    isMoving = true;
-
-    currentIndex++;
-    moveToIndex(true);
-});
-
-propertyPrev.addEventListener('click', () => {
-    if (isMoving) return;
-    isMoving = true;
-
-    currentIndex--;
-    moveToIndex(true);
-});
-
-propertyContainer.addEventListener('transitionend', () => {
-    const originals = propertyContainer.querySelectorAll('.property-card:not(.clone)');
-    const originalCount = originals.length;
-
-    if (currentIndex >= originalCount + visibleCards) {
-        currentIndex = visibleCards;
-        moveToIndex(false);
+        card.style.setProperty('display', 'block', 'important');
+        card.style.setProperty('flex', `0 0 ${cardWidth}`, 'important');
+        card.style.setProperty('width', cardWidth, 'important');
+        card.style.setProperty('min-width', cardWidth, 'important');
+        card.style.setProperty('max-width', cardWidth, 'important');
     }
+}
 
-    if (currentIndex < visibleCards) {
-        currentIndex = originalCount + visibleCards - 1;
-        moveToIndex(false);
-    }
+propertyNext.addEventListener('click', function () {
+    propertyIndex =
+        (propertyIndex + 1) % propertyCards.length;
 
-    isMoving = false;
+    renderProperties();
 });
 
-window.addEventListener('resize', buildCarousel);
+propertyPrev.addEventListener('click', function () {
+    propertyIndex =
+        (propertyIndex - 1 + propertyCards.length) %
+        propertyCards.length;
 
-buildCarousel();
+    renderProperties();
+});
+
+window.addEventListener('resize', renderProperties);
+
+renderProperties();
 });
 
 propertyPrev.addEventListener('click', function () {
