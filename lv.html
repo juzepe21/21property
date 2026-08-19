@@ -778,18 +778,66 @@ if(window.location.search.includes("success=true")){
     }, 1000);
 }
   const propertyContainer = document.querySelector('#properties .services');
+const propertyCards = Array.from(
+    propertyContainer.querySelectorAll('.property-card')
+);
+
 const propertyPrev = document.getElementById('property-prev');
 const propertyNext = document.getElementById('property-next');
 
+let propertyIndex = 0;
+
+function renderProperties() {
+
+    const mobile = window.innerWidth <= 900;
+    const visibleCards = mobile ? 2 : 3;
+    const gap = mobile ? 12 : 22;
+
+    propertyContainer.style.setProperty('display', 'flex', 'important');
+    propertyContainer.style.setProperty('gap', gap + 'px', 'important');
+    propertyContainer.style.setProperty('overflow', 'hidden', 'important');
+    propertyContainer.style.setProperty('width', '100%', 'important');
+
+    propertyCards.forEach(card => {
+        card.style.setProperty('display', 'none', 'important');
+    });
+
+    const cardWidth =
+        `calc((100% - ${(visibleCards - 1) * gap}px) / ${visibleCards})`;
+
+    for (let i = 0; i < visibleCards; i++) {
+
+        const card =
+            propertyCards[(propertyIndex + i) % propertyCards.length];
+
+        card.style.setProperty('display', 'block', 'important');
+        card.style.setProperty('flex', `0 0 ${cardWidth}`, 'important');
+        card.style.setProperty('width', cardWidth, 'important');
+        card.style.setProperty('min-width', cardWidth, 'important');
+        card.style.setProperty('max-width', cardWidth, 'important');
+    }
+}
+
 propertyNext.addEventListener('click', function () {
-    const firstCard = propertyContainer.firstElementChild;
-    propertyContainer.appendChild(firstCard);
+    propertyIndex =
+        (propertyIndex + 1) % propertyCards.length;
+
+    renderProperties();
 });
 
 propertyPrev.addEventListener('click', function () {
-    const lastCard = propertyContainer.lastElementChild;
-    propertyContainer.insertBefore(lastCard, propertyContainer.firstElementChild);
+    propertyIndex =
+        (propertyIndex - 1 + propertyCards.length) %
+        propertyCards.length;
+
+    renderProperties();
 });
+
+window.addEventListener('resize', renderProperties);
+
+renderProperties();
+
+
 </script>
 </body>
 </html>
