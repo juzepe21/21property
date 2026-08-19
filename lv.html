@@ -173,15 +173,21 @@ section {
     position: relative;
 }
 
+.property-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
 #properties .services {
     display: flex;
-    overflow: hidden;
     gap: 22px;
+    transition: transform 0.45s ease;
+    will-change: transform;
 }
 
 #properties .property-card {
-    min-width: calc((100% - 44px) / 3);
     flex: 0 0 calc((100% - 44px) / 3);
+    min-width: calc((100% - 44px) / 3);
 }
 
 .property-nav {
@@ -319,20 +325,14 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  #properties .services {
-    display: flex !important;
-    gap: 12px !important;
-    width: 100% !important;
-    overflow: hidden !important;
-  }
+#properties .services {
+    gap: 12px;
+}
 
-  #properties .property-card {
-    flex: 0 0 calc(50% - 6px) !important;
-    min-width: calc(50% - 6px) !important;
-    width: calc(50% - 6px) !important;
-    padding: 12px !important;
-    box-sizing: border-box;
-  }
+#properties .property-card {
+    flex: 0 0 calc((100% - 12px) / 2);
+    min-width: calc((100% - 12px) / 2);
+}
 
   #properties .property-main-img {
     height: 180px;
@@ -778,65 +778,105 @@ if(window.location.search.includes("success=true")){
         window.history.replaceState({}, document.title, "/");
     }, 1000);
 }
-  const propertyContainer = document.querySelector('#properties .services');
-const propertyCards = Array.from(
-    propertyContainer.querySelectorAll('.property-card')
-);
-
+ const propertyContainer = document.querySelector('#properties .services');
 const propertyPrev = document.getElementById('property-prev');
 const propertyNext = document.getElementById('property-next');
 
-let propertyIndex = 0;
+let visibleCards;
+let currentIndex;
+let isMoving = false;
 
-function renderProperties() {
+function setupCarousel() {
+    propertyContainer.querySelectorAll('.property-clone').forEach(clone => clone.remove());
 
-    const mobile = window.innerWidth <= 900;
-    const visibleCards = mobile ? 2 : 3;
-    const gap = mobile ? 12 : 22;
+    const originals = Array.from(
+        propertyContainer.querySelectorAll('.property-card')
+    );
 
-    propertyContainer.style.setProperty('display', 'flex', 'important');
-    propertyContainer.style.setProperty('gap', gap + 'px', 'important');
-    propertyContainer.style.setProperty('overflow', 'hidden', 'important');
-    propertyContainer.style.setProperty('width', '100%', 'important');
+    visibleCards = window.innerWidth <= 900 ? 2 : 3;
+    const gap = window.innerWidth <= 900 ? 12 : 22;
 
-    propertyCards.forEach(card => {
-        card.style.setProperty('display', 'none', 'important');
+    const before = document.createDocumentFragment();
+    originals.slice(-visibleCards).forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add('property-clone');
+        before.appendChild(clone);
     });
 
-    const cardWidth =
-        `calc((100% - ${(visibleCards - 1) * gap}px) / ${visibleCards})`;
+    propertyContainer.prepend(before);
 
-    for (let i = 0; i < visibleCards; i++) {
+    originals.slice(0, visibleCards).forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add('property-clone');
+        propertyContainer.appendChild(clone);
+    });
 
-        const card =
-            propertyCards[(propertyIndex + i) % propertyCards.length];
+    currentIndex = visibleCards;
 
-        card.style.setProperty('display', 'block', 'important');
-        card.style.setProperty('flex', `0 0 ${cardWidth}`, 'important');
-        card.style.setProperty('width', cardWidth, 'important');
-        card.style.setProperty('min-width', cardWidth, 'important');
-        card.style.setProperty('max-width', cardWidth, 'important');
-    }
+    propertyContainer.style.transition = 'none';
+    propertyContainer.style.transform =
+        `translateX(-${currentIndex * getStep()}px)`;
+
+    isMoving = false;
+}
+
+function getStep() {
+    const firstCard = propertyContainer.querySelector('.property-card');
+    const gap = window.innerWidth <= 900 ? 12 : 22;
+
+    return firstCard.getBoundingClientRect().width + gap;
+}
+
+function moveCarousel() {
+    propertyContainer.style.transition = 'transform 0.45s ease';
+    propertyContainer.style.transform =
+        `translateX(-${currentIndex * getStep()}px)`;
 }
 
 propertyNext.addEventListener('click', function () {
-    propertyIndex =
-        (propertyIndex + 1) % propertyCards.length;
+    if (isMoving) return;
 
-    renderProperties();
+    isMoving = true;
+    currentIndex++;
+    moveCarousel();
 });
 
 propertyPrev.addEventListener('click', function () {
-    propertyIndex =
-        (propertyIndex - 1 + propertyCards.length) %
-        propertyCards.length;
+    if (isMoving) return;
 
-    renderProperties();
+    isMoving = true;
+    currentIndex--;
+    moveCarousel();
 });
 
-window.addEventListener('resize', renderProperties);
+propertyContainer.addEventListener('transitionend', function () {
+    const originalCount =
+        propertyContainer.querySelectorAll('.property-card:not(.property-clone)').length;
 
-renderProperties();
+    if (currentIndex >= originalCount + visibleCards) {
+        currentIndex = visibleCards;
+
+        propertyContainer.style.transition = 'none';
+        propertyContainer.style.transform =
+            `translateX(-${currentIndex * getStep()}px)`;
+    }
+
+    if (currentIndex < visibleCards) {
+        currentIndex = originalCount + currentIndex;
+
+        propertyContainer.style.transition = 'none';
+        propertyContainer.style.transform =
+            `translateX(-${currentIndex * getStep()}px)`;
+    }
+
+    isMoving = false;
+});
+
+window.addEventListener('resize', function () {
+    setupCarousel();
+});
+
+setupCarousel();
 
 </script>
 </body>
