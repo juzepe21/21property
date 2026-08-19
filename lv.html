@@ -778,51 +778,84 @@ if(window.location.search.includes("success=true")){
     }, 1000);
 }
   const propertyContainer = document.querySelector('#properties .services');
-const propertyCards = Array.from(
-    propertyContainer.querySelectorAll('.property-card')
-);
-
 const propertyPrev = document.getElementById('property-prev');
 const propertyNext = document.getElementById('property-next');
 
-let propertyIndex = 0;
+let isSliding = false;
 
-function renderProperties() {
+function getVisibleCards() {
+    return window.innerWidth <= 900 ? 2 : 3;
+}
 
-    const mobile = window.innerWidth <= 900;
-    const visibleCards = mobile ? 2 : 3;
-    const gap = mobile ? 12 : 22;
+function setupProperties() {
+    const visible = getVisibleCards();
+    const gap = window.innerWidth <= 900 ? 12 : 22;
 
-    propertyContainer.style.setProperty('display', 'flex', 'important');
-    propertyContainer.style.setProperty('gap', gap + 'px', 'important');
-    propertyContainer.style.setProperty('overflow', 'hidden', 'important');
-    propertyContainer.style.setProperty('width', '100%', 'important');
+    const cards = propertyContainer.querySelectorAll('.property-card');
+    const cardWidth = `calc((100% - ${(visible - 1) * gap}px) / ${visible})`;
 
-    propertyCards.forEach(card => {
-        card.style.setProperty('display', 'none', 'important');
+    propertyContainer.style.display = 'flex';
+    propertyContainer.style.gap = gap + 'px';
+    propertyContainer.style.overflow = 'visible';
+    propertyContainer.style.transform = 'translateX(0)';
+    propertyContainer.style.transition = 'none';
+
+    cards.forEach(card => {
+        card.style.display = 'block';
+        card.style.flex = `0 0 ${cardWidth}`;
+        card.style.width = cardWidth;
+        card.style.minWidth = cardWidth;
+        card.style.maxWidth = cardWidth;
     });
-
-    const cardWidth =
-        `calc((100% - ${(visibleCards - 1) * gap}px) / ${visibleCards})`;
-
-    for (let i = 0; i < visibleCards; i++) {
-
-        const card =
-            propertyCards[(propertyIndex + i) % propertyCards.length];
-
-        card.style.setProperty('display', 'block', 'important');
-        card.style.setProperty('flex', `0 0 ${cardWidth}`, 'important');
-        card.style.setProperty('width', cardWidth, 'important');
-        card.style.setProperty('min-width', cardWidth, 'important');
-        card.style.setProperty('max-width', cardWidth, 'important');
-    }
 }
 
 propertyNext.addEventListener('click', function () {
-    propertyIndex =
-        (propertyIndex + 1) % propertyCards.length;
+    if (isSliding) return;
+    isSliding = true;
 
-    renderProperties();
+    const firstCard = propertyContainer.firstElementChild;
+    const gap = window.innerWidth <= 900 ? 12 : 22;
+    const distance = firstCard.getBoundingClientRect().width + gap;
+
+    propertyContainer.style.transition = 'transform 0.45s ease';
+    propertyContainer.style.transform = `translateX(-${distance}px)`;
+
+    setTimeout(() => {
+        propertyContainer.appendChild(firstCard);
+        propertyContainer.style.transition = 'none';
+        propertyContainer.style.transform = 'translateX(0)';
+        isSliding = false;
+    }, 450);
+});
+
+propertyPrev.addEventListener('click', function () {
+    if (isSliding) return;
+    isSliding = true;
+
+    const lastCard = propertyContainer.lastElementChild;
+    propertyContainer.insertBefore(lastCard, propertyContainer.firstElementChild);
+
+    const gap = window.innerWidth <= 900 ? 12 : 22;
+    const distance = lastCard.getBoundingClientRect().width + gap;
+
+    propertyContainer.style.transition = 'none';
+    propertyContainer.style.transform = `translateX(-${distance}px)`;
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            propertyContainer.style.transition = 'transform 0.45s ease';
+            propertyContainer.style.transform = 'translateX(0)';
+        });
+    });
+
+    setTimeout(() => {
+        isSliding = false;
+    }, 450);
+});
+
+window.addEventListener('resize', setupProperties);
+
+setupProperties();
 });
 
 propertyPrev.addEventListener('click', function () {
