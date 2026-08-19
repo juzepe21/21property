@@ -836,20 +836,6 @@ propertyPrev.addEventListener('click', function () {
 window.addEventListener('resize', renderProperties);
 
 renderProperties();
-});
-
-propertyPrev.addEventListener('click', function () {
-    propertyIndex =
-        (propertyIndex - 1 + propertyCards.length) %
-        propertyCards.length;
-
-    renderProperties();
-});
-
-window.addEventListener('resize', renderProperties);
-
-renderProperties();
-
 
 </script>
 </body>
