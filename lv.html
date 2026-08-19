@@ -169,8 +169,41 @@ section {
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
   }
-  #properties .services {
-    grid-template-columns: repeat(3, 1fr);
+  #properties {
+    position: relative;
+}
+
+#properties .services {
+    display: flex;
+    overflow: hidden;
+    gap: 22px;
+}
+
+#properties .property-card {
+    min-width: calc((100% - 44px) / 3);
+    flex: 0 0 calc((100% - 44px) / 3);
+}
+
+.property-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.property-nav button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #b08a4a;
+    background: white;
+    cursor: pointer;
+    font-size: 22px;
+    border-radius: 50%;
+}
+
+.property-nav button:hover {
+    background: #b08a4a;
+    color: white;
 }
 
 .card {
@@ -476,6 +509,10 @@ form button:hover{
   <p class="section-subtitle">
    Piemēri īpašumiem, kuros varam nodrošināt uzraudzību, foto atskaites, īrnieku komunikāciju un ikdienas pārvaldības darbu koordinēšanu.
   </p>
+  <div class="property-nav">
+  <button type="button" id="property-prev" aria-label="Iepriekšējais objekts">←</button>
+  <button type="button" id="property-next" aria-label="Nākamais objekts">→</button>
+</div>
 
   <div class="services">
     <div class="card property-card">
@@ -515,6 +552,18 @@ form button:hover{
 
   <h3>Īres īpašums A.Čaka ielā 146</h3>
   <p>Īpašuma uzraudzība, apsekošanas, foto atskaites un ikdienas jautājumu koordinēšana.</p>
+</div>
+    <div class="card property-card">
+    <img src="property-4-main.jpeg.jpeg" alt="Īres īpašums Bērzaunes ielā 3A, Teikā" class="property-main-img">
+
+    <div class="property-gallery">
+        <img src="property-4-1.jpeg.jpeg" alt="Īpašuma foto">
+        <img src="property-4-2.jpeg.jpeg" alt="Īpašuma foto">
+        <img src="property-4-3.jpeg.jpeg" alt="Īpašuma foto">
+    </div>
+
+    <h3>Īres īpašums Bērzaunes ielā 3A, Teikā</h3>
+    <p>Īrnieku piesaiste un atlase, īpašuma izīrēšanas procesa koordinēšana un atbalsts īpašniekam ikdienas jautājumos.</p>
 </div>
 
   </div>
@@ -688,6 +737,19 @@ if(window.location.search.includes("success=true")){
         window.history.replaceState({}, document.title, "/");
     }, 1000);
 }
+  const propertyContainer = document.querySelector('#properties .services');
+const propertyPrev = document.getElementById('property-prev');
+const propertyNext = document.getElementById('property-next');
+
+propertyNext.addEventListener('click', function () {
+    const firstCard = propertyContainer.firstElementChild;
+    propertyContainer.appendChild(firstCard);
+});
+
+propertyPrev.addEventListener('click', function () {
+    const lastCard = propertyContainer.lastElementChild;
+    propertyContainer.insertBefore(lastCard, propertyContainer.firstElementChild);
+});
 </script>
 </body>
 </html>
