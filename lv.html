@@ -761,6 +761,57 @@ Uzticams vietējais partneris īpašumu īpašniekiem, investoriem un latviešie
     object-fit: cover;
     display: block;
 }
+  /* FAQ */
+#faq details {
+    border-bottom: 1px solid #d8d2c8;
+    padding: 16px 0;
+}
+
+#faq details:first-of-type {
+    border-top: 1px solid #d8d2c8;
+}
+
+#faq summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    padding-right: 40px;
+}
+
+#faq summary::-webkit-details-marker {
+    display: none;
+}
+
+#faq summary::marker {
+    display: none;
+    content: "";
+}
+
+#faq summary::after {
+    content: "+";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b08a4a;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+#faq details[open] summary::after {
+    content: "−";
+}
+
+#faq details p {
+    margin: 12px 0 2px;
+    max-width: 850px;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+}
 </style>
   <section id="faq">
   <h2 class="section-title">Biežāk Uzdotie Jautājumi</h2>
