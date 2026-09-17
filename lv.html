@@ -698,6 +698,25 @@ form button:hover{
 </section>
 
 <section id="why" class="dark">
+  <section id="reviews">
+    <h2 class="section-title">Klientu atsauksmes</h2>
+    <p class="section-subtitle">Ko mūsu klienti saka par sadarbību ar 21 Property Solutions.</p>
+
+    <div class="reviews-slider">
+
+        <div class="reviews-grid">
+            <img src="review-1.jpeg" alt="21 Property Solutions klienta atsauksme">
+            <img src="review-2.jpeg" alt="21 Property Solutions klienta atsauksme">
+            <img src="review-3.jpeg" alt="21 Property Solutions klienta atsauksme">
+        </div>
+
+        <div class="reviews-nav">
+            <button type="button" id="review-prev" aria-label="Iepriekšējā atsauksme">←</button>
+            <button type="button" id="review-next" aria-label="Nākamā atsauksme">→</button>
+        </div>
+
+    </div>
+</section>
   <h2 class="section-title">Kāpēc izvēlēties mūs?</h2>
  <p class="section-subtitle">
 Uzticams vietējais partneris īpašumu īpašniekiem, investoriem un latviešiem, kuri dzīvo ārvalstīs.
@@ -811,6 +830,66 @@ Uzticams vietējais partneris īpašumu īpašniekiem, investoriem un latviešie
     color: #666;
     font-size: 15px;
     line-height: 1.6;
+}
+  /* KLIENTU ATSAUKSMES */
+#reviews {
+    background: #f7f5f1;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 30px;
+    align-items: start;
+}
+
+.reviews-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+
+    .reviews-slider {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .reviews-grid {
+        display: flex;
+        gap: 0;
+        margin-top: 25px;
+        transition: transform 0.4s ease;
+    }
+
+    .reviews-grid img {
+        flex: 0 0 100%;
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .reviews-nav {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 20px;
+    }
+
+    .reviews-nav button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid #b08a4a;
+        background: white;
+        color: #b08a4a;
+        font-size: 24px;
+        cursor: pointer;
+    }
 }
 </style>
   <section id="faq">
@@ -1028,6 +1107,38 @@ window.addEventListener('resize', function () {
 
 setupCarousel();
 
+</script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const reviewsGrid = document.querySelector(".reviews-grid");
+    const reviews = document.querySelectorAll(".reviews-grid img");
+    const prevBtn = document.getElementById("review-prev");
+    const nextBtn = document.getElementById("review-next");
+
+    if (!reviewsGrid || !prevBtn || !nextBtn || reviews.length === 0) return;
+
+    let currentReview = 0;
+
+    function showReview() {
+        if (window.innerWidth <= 700) {
+            reviewsGrid.style.transform = `translateX(-${currentReview * 100}%)`;
+        } else {
+            reviewsGrid.style.transform = "";
+        }
+    }
+
+    nextBtn.addEventListener("click", function () {
+        currentReview = (currentReview + 1) % reviews.length;
+        showReview();
+    });
+
+    prevBtn.addEventListener("click", function () {
+        currentReview = (currentReview - 1 + reviews.length) % reviews.length;
+        showReview();
+    });
+
+    window.addEventListener("resize", showReview);
+});
 </script>
 </body>
 </html>
