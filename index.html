@@ -745,11 +745,20 @@ nav a {
     <h2 class="section-title">Client Reviews</h2>
     <p class="section-subtitle">What our clients say about working with 21 Property Solutions.</p>
 
+   <div class="reviews-slider">
+
     <div class="reviews-grid">
         <img src="review-1.jpeg" alt="21 Property Solutions client review">
         <img src="review-2.jpeg" alt="21 Property Solutions client review">
         <img src="review-3.jpeg" alt="21 Property Solutions client review">
     </div>
+
+    <div class="reviews-nav">
+        <button type="button" id="review-prev" aria-label="Previous review">←</button>
+        <button type="button" id="review-next" aria-label="Next review">→</button>
+    </div>
+
+</div>
 </section>
 <section id="why" class="dark">
   <h2 class="section-title">Why Choose Us</h2>
@@ -838,9 +847,41 @@ nav a {
 
 /* MOBILE */
 @media (max-width: 700px) {
+
+    .reviews-slider {
+        position: relative;
+        overflow: hidden;
+    }
+
     .reviews-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        display: flex;
+        gap: 0;
+        margin-top: 25px;
+        transition: transform 0.4s ease;
+    }
+
+    .reviews-grid img {
+        flex: 0 0 100%;
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .reviews-nav {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 20px;
+    }
+
+    .reviews-nav button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid #b08a4a;
+        background: white;
+        color: #b08a4a;
+        font-size: 24px;
+        cursor: pointer;
     }
 }
 </style>
@@ -1044,6 +1085,38 @@ window.addEventListener('resize', function () {
 });
 
 setupCarousel();
+</script>
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const reviewsGrid = document.querySelector(".reviews-grid");
+    const reviews = document.querySelectorAll(".reviews-grid img");
+    const prevBtn = document.getElementById("review-prev");
+    const nextBtn = document.getElementById("review-next");
+
+    if (!reviewsGrid || !prevBtn || !nextBtn || reviews.length === 0) return;
+
+    let currentReview = 0;
+
+    function showReview() {
+        if (window.innerWidth <= 700) {
+            reviewsGrid.style.transform = `translateX(-${currentReview * 100}%)`;
+        } else {
+            reviewsGrid.style.transform = "";
+        }
+    }
+
+    nextBtn.addEventListener("click", function () {
+        currentReview = (currentReview + 1) % reviews.length;
+        showReview();
+    });
+
+    prevBtn.addEventListener("click", function () {
+        currentReview = (currentReview - 1 + reviews.length) % reviews.length;
+        showReview();
+    });
+
+    window.addEventListener("resize", showReview);
+});
 </script>
 </body>
 </html>
