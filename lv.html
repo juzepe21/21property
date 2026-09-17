@@ -702,16 +702,14 @@ form button:hover{
     <p class="section-subtitle">Ko mūsu klienti saka par sadarbību ar 21 Property Solutions.</p>
 
     <div class="reviews-slider">
-
+ <div class="reviews-nav">
+            <button type="button" id="review-prev" aria-label="Iepriekšējā atsauksme">←</button>
+            <button type="button" id="review-next" aria-label="Nākamā atsauksme">→</button>
+        </div>
         <div class="reviews-grid">
             <img src="review-1.jpeg" alt="21 Property Solutions klienta atsauksme">
             <img src="review-2.jpeg" alt="21 Property Solutions klienta atsauksme">
             <img src="review-3.jpeg" alt="21 Property Solutions klienta atsauksme">
-        </div>
-
-        <div class="reviews-nav">
-            <button type="button" id="review-prev" aria-label="Iepriekšējā atsauksme">←</button>
-            <button type="button" id="review-next" aria-label="Nākamā atsauksme">→</button>
         </div>
 
     </div>
@@ -859,6 +857,28 @@ Uzticams vietējais partneris īpašumu īpašniekiem, investoriem un latviešie
     display: block;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+  .reviews-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0 0 20px 0;
+}
+
+.reviews-nav button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #b08a4a;
+    background: white;
+    color: #b08a4a;
+    cursor: pointer;
+    font-size: 22px;
+    border-radius: 50%;
+}
+
+.reviews-nav button:hover {
+    background: #b08a4a;
+    color: white;
 }
 
 /* MOBILE */
